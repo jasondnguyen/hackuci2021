@@ -65,7 +65,7 @@ skipButton.addEventListener('click', newPic)
 
 mapButton.addEventListener('click', mapRedirect)
 
-function getLatLng(map) {
+function getLatLng(map2) {
     console.log("getlatlag")
     var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
     if (navigator.geolocation) {
@@ -73,26 +73,23 @@ function getLatLng(map) {
             (position) => {
             localStorage.setItem('lat', position.coords.latitude)
             localStorage.setItem('lon', position.coords.longitude)
-            console.log(position.coords.latitude + "lat")
-            console.log(position.coords.longitude + "long")
+            console.log(position.coords.latitude + " lat")
+            console.log(position.coords.longitude + " long")
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
+            map2.setCenter(pos)
             console.log(pos + "a")
             return pos
             },
         );
     }
     console.log(pos + "b")
-    return pos;
+    //return pos;
 }
 
 function initMap() {
-    var pos = getLatLng();
-    console.log("cc")
-    console.log(pos)
-    console.log("dd")
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         scrollwheel: false,
@@ -104,7 +101,8 @@ function initMap() {
         disableDefaultUI: true,
         center: pos
     });
-    map.setCenter(pos)
+    console.log("map loaded")
+    var pos = getLatLng(map);
     const test = {lat: 33.758060799999996, lng: -117.9600352}
     addMarker(test, map);
 }

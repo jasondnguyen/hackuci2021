@@ -16,7 +16,7 @@ const fetchYelp = async () => {
     document.getElementById('restaurant1info').innerHTML = data.businesses[randomInt]['location']['display_address']
     localStorage.setItem('address1', data.businesses[randomInt]['location']['display_address'])
     let randomInt2 = Math.floor(Math.random()*size)  
-    while (numArray.indexOf(randomInt2) > 0){
+    while (numArray.indexOf(randomInt2) > -1){
         randomInt2 = Math.floor(Math.random()*size)  
     }
     numArray.push(randomInt2) 
@@ -24,7 +24,7 @@ const fetchYelp = async () => {
     document.getElementById('restaurant2info').innerHTML = data.businesses[randomInt2]['location']['display_address']
     localStorage.setItem('address2', data.businesses[randomInt2]['location']['display_address'])
     let randomInt3 = Math.floor(Math.random()*size)  
-    while (numArray.indexOf(randomInt3) > 0){
+    while (numArray.indexOf(randomInt3) > -1){
         randomInt3 = Math.floor(Math.random()*size)  
     }
     numArray.push(randomInt3)
