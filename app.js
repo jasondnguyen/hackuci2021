@@ -39,7 +39,8 @@ let database = [
     {"name": "salad", "link": "https://cafedelites.com/wp-content/uploads/2017/02/Avocado-Greek-Salad-Greek-Dressing-FINAL-5-1.jpg"},
     {"name": "sushi", "link": "https://www.nippon.com/en/ncommon/contents/japan-data/169591/169591.jpg"},
     {"name": "sushi", "Link": "https://savorjapan.com/gg/content_image/t0330_005.jpg"}]   
-let chosenName = 'pizza'
+let chosenName = ''
+let numArray = []
 
 skipButton = document.getElementById('skipButton')
 mapButton = document.getElementById('mapButton')
@@ -47,6 +48,14 @@ mapButton = document.getElementById('mapButton')
 function newPic(){
     let size = Object.keys(database).length;
     let randomInt = Math.floor(Math.random()*size)
+    if (numArray.length == size){
+        numArray = []
+    }
+    while (numArray.indexOf(randomInt) > -1){
+        randomInt = Math.floor(Math.random()*size)
+    }
+    numArray.push(randomInt)
+    console.log(numArray)
     let name = database[randomInt]['name']
     let link = database[randomInt]['link']
     var img = document.getElementById('pic');
@@ -83,7 +92,7 @@ function getLatLng(map2) {
     return pos;
 }
 
-async function initMap() {
+const initMap = async () => {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         scrollwheel: false,
@@ -97,19 +106,23 @@ async function initMap() {
     });
     var pos = getLatLng(map);
     const test = {lat: 33.758060799999996, lng: -117.9600352}
-    for(i = 1; i < 4; i++){
-        var address = localStorage.getItem('address' + i).replace(/ /g, "+")
-        console.log(address)
-        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
-        
-        const res = await fetch(url)
-        const data = res.json()
-        console.log(data['results']['geometry']['location']['lat'])
-        console.log(data['results']['geometry']['location']['lng'])
+    // for(i = 1; i < 4; i++){
+    var address = localStorage.getItem('address1').replace(/ /g, "+")
+    console.log(address)
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
+        // console.log(url)
+    const res = await fetch(url)
+    const data = res.json()
+        // console.log(typeof(data))
+        // console.log(JSON.stringify(data))
+        // console.log("json okokok")
+    console.log(data)
+        // console.log(data['results']['0']['geometry']['location']['lat'])
+        // console.log(data['results']['0']['geometry']['location']['lng'])
         
         
         addMarker(test, map);
-    }
+    //}
 }
 
 function addMarker(location, map) {
@@ -122,4 +135,5 @@ function addMarker(location, map) {
 }
 
 document.onload = initMap()
+document.onload = newPic()
 
