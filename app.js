@@ -19,7 +19,7 @@ let database = [
     {"name": "hot wings", "link": "https://barbecuebible.com/wp-content/uploads/2017/05/featured-nashville-hot-wings-1024x577.jpg"},
     {"name": "hot wings", "link": "https://www.simplyrecipes.com/wp-content/uploads/2013/01/Buffalo-Wings-LEAD-1.jpg"},
     {"name": "ice cream", "link": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/216744.jpg?output-format=auto&output-quality=auto"},
-    {"name": "ramen", "link": "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg"},
+    {"nname": "ramen", "link": "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg"},
     {"name": "sushi", "link": "https://v1.nitrocdn.com/KQYMGOLIdXGmoAcyJsPOrQDKktgCbwtG/assets/static/source/rev-97d867a/wp-content/uploads/2020/01/Sushi-Rolls-Maki-Sushi-%E2%80%93-Hosomaki-1106-II.jpg"},
     {"name": "hot pot", "link": "https://mykoreankitchen.com/wp-content/uploads/2017/06/3.-Korean-Hot-Pot-with-Dumplings.jpg"}, 
     {"name": "boba", "link": "https://cdn.shopify.com/s/files/1/1771/2939/products/VintageMilkTeawBoba-1_50fd616c-339e-4e96-bb13-ae470753a64d_1024x1024.jpg?v=1585511204"},
@@ -44,6 +44,7 @@ let numArray = []
 
 skipButton = document.getElementById('skipButton')
 mapButton = document.getElementById('mapButton')
+
 
 function newPic(){
     let size = Object.keys(database).length;
@@ -73,67 +74,5 @@ skipButton.addEventListener('click', newPic)
 
 mapButton.addEventListener('click', mapRedirect)
 
-function getLatLng(map2) {
-    var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-            localStorage.setItem('lat', position.coords.latitude)
-            localStorage.setItem('lon', position.coords.longitude)
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
-            map2.setCenter(pos)
-            return pos
-            },
-        );
-    }
-    return pos;
-}
-
-const initMap = async () => {
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
-        scrollwheel: false,
-        zoomControl: false,
-        navigationControl: false, 
-        mapTypeControl: false, 
-        scaleControl: false, 
-        draggable: false,
-        disableDefaultUI: true,
-        center: pos
-    });
-    var pos = getLatLng(map);
-    const test = {lat: 33.758060799999996, lng: -117.9600352}
-    // for(i = 1; i < 4; i++){
-    var address = localStorage.getItem('address1').replace(/ /g, "+")
-    console.log(address)
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
-        // console.log(url)
-    const res = await fetch(url)
-    const data = res.json()
-        // console.log(typeof(data))
-        // console.log(JSON.stringify(data))
-        // console.log("json okokok")
-    console.log(data)
-        // console.log(data['results']['0']['geometry']['location']['lat'])
-        // console.log(data['results']['0']['geometry']['location']['lng'])
-        
-        
-        addMarker(test, map);
-    //}
-}
-
-function addMarker(location, map) {
-    new google.maps.Marker({
-      position: location,
-      //label: labels[labelIndex++ % labels.length],
-      label: "A",
-      map: map
-  });
-}
-
-document.onload = initMap()
 document.onload = newPic()
 
