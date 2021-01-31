@@ -48,12 +48,12 @@ mapButton = document.getElementById('mapButton')
 
 function newPic(){
     let size = Object.keys(database).length;
-    let randomInt = Math.floor(Math.random()*size)
-    if (numArray.length == size){
+    let randomInt = Math.floor(Math.random() * size)
+    if (numArray.length == size) {
         numArray = []
     }
-    while (numArray.indexOf(randomInt) > -1){
-        randomInt = Math.floor(Math.random()*size)
+    while (numArray.indexOf(randomInt) > -1) {
+        randomInt = Math.floor(Math.random() * size)
     }
     numArray.push(randomInt)
     console.log(numArray)
@@ -68,7 +68,7 @@ function newPic(){
 function mapRedirect() {
     localStorage.setItem('chosenName', chosenName)
     location.href = "map.html"
-} 
+}
 
 skipButton.addEventListener('click', newPic)
 
