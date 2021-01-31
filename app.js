@@ -74,5 +74,26 @@ skipButton.addEventListener('click', newPic)
 
 mapButton.addEventListener('click', mapRedirect)
 
+function getLatLng(map2) {
+    var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+            localStorage.setItem('lat', position.coords.latitude)
+            localStorage.setItem('lon', position.coords.longitude)
+            pos = {
+               lat: position.coords.latitude,
+               lng: position.coords.longitude,
+           };
+           map2.setCenter(pos)
+           addMarker(pos, map2, "H")
+           return pos
+           },
+       );
+   }
+   return pos;
+}
+
 document.onload = newPic()
+document.onload = getLatLng()
 

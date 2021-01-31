@@ -13,7 +13,7 @@ const fetchYelp = async () => {
     const myParams = { "term": chosenName, "latitude": latitude, "longitude": longitude };
     let url = new URL('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search');
     url.search = new URLSearchParams(myParams)
-    const res = await fetch(url, { headers: { 'Authorization': 'Bearer 1oLYc5PCEWVwWuK6aM7G1_vjHJfZqWqfSkx9-SrFK3x5Uc6kT1cXXIw6rVwgKvolQsS7aSpaYt336gO3wpIErXBHrQbC0Pp-9TgjA7mVYwolLBzgkvbBE8A2YPsUYHYx' } })
+    const res = await fetch(url, { headers: { 'Authorization': 'Bearer lTW6_nGNpHuUJqZEjyYNKXf8K2V1Ru002uwIr_o4jCSbEklryqiF82RBTIDRfsf2UMn_bovcI5yvjxKU_rg2gm_CtYiK6URYyeC_o56GAOY3EBMVtuupT-_XFoQWYHYx'}})
     const data = await res.json();
     let size = Object.keys(data.businesses).length;
     let randomInt = Math.floor(Math.random() * size)
