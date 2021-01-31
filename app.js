@@ -38,8 +38,7 @@ let database = [
     {"name": "salad", "link": "https://www.olivetomato.com/wp-content/uploads/2019/12/Green-salad-with-feta.jpeg"},
     {"name": "salad", "link": "https://cafedelites.com/wp-content/uploads/2017/02/Avocado-Greek-Salad-Greek-Dressing-FINAL-5-1.jpg"},
     {"name": "sushi", "link": "https://www.nippon.com/en/ncommon/contents/japan-data/169591/169591.jpg"},
-    {"name": "sushi", "Link": "https://savorjapan.com/gg/content_image/t0330_005.jpg"}]  
-
+    {"name": "sushi", "Link": "https://savorjapan.com/gg/content_image/t0330_005.jpg"}]   
 let chosenName = 'pizza'
 
 skipButton = document.getElementById('skipButton')
@@ -66,27 +65,22 @@ skipButton.addEventListener('click', newPic)
 mapButton.addEventListener('click', mapRedirect)
 
 function getLatLng(map2) {
-    console.log("getlatlag")
     var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
             localStorage.setItem('lat', position.coords.latitude)
             localStorage.setItem('lon', position.coords.longitude)
-            console.log(position.coords.latitude + " lat")
-            console.log(position.coords.longitude + " long")
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
             map2.setCenter(pos)
-            console.log(pos + "a")
             return pos
             },
         );
     }
-    console.log(pos + "b")
-    //return pos;
+    return pos;
 }
 
 function initMap() {
@@ -101,15 +95,35 @@ function initMap() {
         disableDefaultUI: true,
         center: pos
     });
-    console.log("map loaded")
     var pos = getLatLng(map);
     const test = {lat: 33.758060799999996, lng: -117.9600352}
-    addMarker(test, map);
+    for(i = 1; i < 4; i++){
+        var address = localStorage.getItem('address' + i).replace(/ /g, "+")
+        console.log(address)
+        var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
+        console.log(url)
+
+        const results = function (results) {
+            console.log("aaa")
+            for (let i = 0; i < results.features.length; i++) {
+              const coords = results.features[i].geometry.coordinates;
+              const latLng = new google.maps.LatLng(coords[1], coords[0]);
+              console.log("aaa")
+              console.log(coords)
+              new google.maps.Marker({
+                position: latLng,
+                map: map,
+              });
+            }
+          };
+        addMarker(test, map);
+    }
 }
 
 function addMarker(location, map) {
     new google.maps.Marker({
       position: location,
+      //label: labels[labelIndex++ % labels.length],
       label: "A",
       map: map
   });

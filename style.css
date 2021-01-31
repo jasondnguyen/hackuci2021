@@ -282,7 +282,14 @@ html {
     border-radius: 25px;
     padding-top: 3pt;
     padding-bottom: 3pt;
+    outline: none !important;
     
+}
+#skipButton:active{
+    border-style:outset;
+    outline: none;
+    box-shadow: none;
+    border: none;
 }
 
 #mapButton{
@@ -300,6 +307,7 @@ html {
     border-radius: 25px;
     padding-top: 3pt;
     padding-bottom: 3pt;
+    outline: none !important;
 }
 
 #mapButton:hover{
