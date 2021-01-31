@@ -83,7 +83,7 @@ function getLatLng(map2) {
     return pos;
 }
 
-function initMap() {
+async function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         scrollwheel: false,
@@ -104,7 +104,9 @@ function initMap() {
         
         const res = await fetch(url)
         const data = res.json()
-
+        console.log(data['results']['geometry']['location']['lat'])
+        console.log(data['results']['geometry']['location']['lng'])
+        
         
         addMarker(test, map);
     }
