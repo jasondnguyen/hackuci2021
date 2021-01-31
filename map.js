@@ -18,8 +18,12 @@ const fetchYelp = async () => {
     let size = Object.keys(data.businesses).length;
     let randomInt = Math.floor(Math.random() * size)
     let numArray = []
+<<<<<<< HEAD
+    numArray.push(randomInt) 
+=======
     numArray.push(randomInt)
     console.log(data.businesses)
+>>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
     lat1 = data.businesses[randomInt]['coordinates']['latitude']
     lon1 = data.businesses[randomInt]['coordinates']['longitude']
     document.getElementById('restaurant1name').innerHTML = data.businesses[randomInt]['name']
@@ -29,7 +33,11 @@ const fetchYelp = async () => {
     while (numArray.indexOf(randomInt2) > -1) {
         randomInt2 = Math.floor(Math.random() * size)
     }
+<<<<<<< HEAD
+    numArray.push(randomInt2) 
+=======
     numArray.push(randomInt2)
+>>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
     lat2 = data.businesses[randomInt2]['coordinates']['latitude']
     lon2 = data.businesses[randomInt2]['coordinates']['longitude']
     document.getElementById('restaurant2name').innerHTML = data.businesses[randomInt2]['name']
@@ -45,6 +53,61 @@ const fetchYelp = async () => {
     document.getElementById('restaurant3name').innerHTML = data.businesses[randomInt3]['name']
     document.getElementById('restaurant3info').innerHTML = data.businesses[randomInt3]['location']['display_address']
     document.getElementById('restaurant3phone').innerHTML = data.businesses[randomInt3]['display_phone']
+<<<<<<< HEAD
+    
+    function getLatLng(map2) {
+        var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                localStorage.setItem('lat', position.coords.latitude)
+                localStorage.setItem('lon', position.coords.longitude)
+                pos = {
+                   lat: position.coords.latitude,
+                   lng: position.coords.longitude,
+               };
+               map2.setCenter(pos)
+               addMarker(pos, map2, "H")
+               return pos
+               },
+           );
+       }
+       return pos;
+   }
+   
+   function initMap(){
+       const map = new google.maps.Map(document.getElementById("map"), {
+           zoom: 13,
+           scrollwheel: true,
+           zoomControl: true,
+           navigationControl: false, 
+           mapTypeControl: false, 
+           scaleControl: false, 
+           draggable: true,
+           disableDefaultUI: true,
+           center: pos
+       });
+       var pos = getLatLng(map);
+       const loc1 = { lat: parseFloat(lat1, 10), lng: parseFloat(lon1, 10) }
+       const loc2 = { lat: parseFloat(lat2, 10), lng: parseFloat(lon2, 10) }
+       const loc3 = { lat: parseFloat(lat3, 10), lng: parseFloat(lon3, 10) }
+       addMarker(loc1, map, "1");
+       addMarker(loc2, map, "2");
+       addMarker(loc3, map, "3");
+   }
+   
+   function addMarker(location, map, label) {
+       new google.maps.Marker({
+         position: location,
+         label: label,
+         map: map
+     });
+   }
+   initMap()
+}   
+
+
+=======
 }
 
 // function initMap() {
@@ -99,6 +162,7 @@ const fetchYelp = async () => {
 //         map: map
 //     });
 // }
+>>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
 document.onload = fetchYelp()
 document.onload = initMap()
 
