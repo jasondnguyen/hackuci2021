@@ -101,21 +101,11 @@ function initMap() {
         var address = localStorage.getItem('address' + i).replace(/ /g, "+")
         console.log(address)
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
-        console.log(url)
+        
+        const res = await fetch(url)
+        const data = res.json()
 
-        const results = function (results) {
-            console.log("aaa")
-            for (let i = 0; i < results.features.length; i++) {
-              const coords = results.features[i].geometry.coordinates;
-              const latLng = new google.maps.LatLng(coords[1], coords[0]);
-              console.log("aaa")
-              console.log(coords)
-              new google.maps.Marker({
-                position: latLng,
-                map: map,
-              });
-            }
-          };
+        
         addMarker(test, map);
     }
 }

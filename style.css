@@ -498,3 +498,32 @@ html {
     padding-top: 27pt;
 }
 
+#restaurant1phone{
+    color: #24305E;
+    font-family: Nunito;
+    font-size: 15px;
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+#restaurant2phone{
+    color: #24305E;
+    font-family: Nunito;
+    font-size: 15px;
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+#restaurant3phone{
+    color: #24305E;
+    font-family: Nunito;
+    font-size: 15px;
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    position: relative;
+}
