@@ -98,7 +98,7 @@ const fetchYelp = async () => {
 
 
 document.onload = fetchYelp()
-document.onload = initMap()
+
 
 
 
