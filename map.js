@@ -18,12 +18,9 @@ const fetchYelp = async () => {
     let size = Object.keys(data.businesses).length;
     let randomInt = Math.floor(Math.random() * size)
     let numArray = []
-<<<<<<< HEAD
-    numArray.push(randomInt) 
-=======
+    numArray.push(randomInt)
     numArray.push(randomInt)
     console.log(data.businesses)
->>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
     lat1 = data.businesses[randomInt]['coordinates']['latitude']
     lon1 = data.businesses[randomInt]['coordinates']['longitude']
     document.getElementById('restaurant1name').innerHTML = data.businesses[randomInt]['name']
@@ -33,11 +30,8 @@ const fetchYelp = async () => {
     while (numArray.indexOf(randomInt2) > -1) {
         randomInt2 = Math.floor(Math.random() * size)
     }
-<<<<<<< HEAD
-    numArray.push(randomInt2) 
-=======
     numArray.push(randomInt2)
->>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
+    numArray.push(randomInt2)
     lat2 = data.businesses[randomInt2]['coordinates']['latitude']
     lon2 = data.businesses[randomInt2]['coordinates']['longitude']
     document.getElementById('restaurant2name').innerHTML = data.businesses[randomInt2]['name']
@@ -53,118 +47,60 @@ const fetchYelp = async () => {
     document.getElementById('restaurant3name').innerHTML = data.businesses[randomInt3]['name']
     document.getElementById('restaurant3info').innerHTML = data.businesses[randomInt3]['location']['display_address']
     document.getElementById('restaurant3phone').innerHTML = data.businesses[randomInt3]['display_phone']
-<<<<<<< HEAD
-    
+
     function getLatLng(map2) {
         var pos = { lat: 33.640495180719846, lng: -117.84428547343873 }
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                localStorage.setItem('lat', position.coords.latitude)
-                localStorage.setItem('lon', position.coords.longitude)
-                pos = {
-                   lat: position.coords.latitude,
-                   lng: position.coords.longitude,
-               };
-               map2.setCenter(pos)
-               addMarker(pos, map2, "H")
-               return pos
-               },
-           );
-       }
-       return pos;
-   }
-   
-   function initMap(){
-       const map = new google.maps.Map(document.getElementById("map"), {
-           zoom: 13,
-           scrollwheel: true,
-           zoomControl: true,
-           navigationControl: false, 
-           mapTypeControl: false, 
-           scaleControl: false, 
-           draggable: true,
-           disableDefaultUI: true,
-           center: pos
-       });
-       var pos = getLatLng(map);
-       const loc1 = { lat: parseFloat(lat1, 10), lng: parseFloat(lon1, 10) }
-       const loc2 = { lat: parseFloat(lat2, 10), lng: parseFloat(lon2, 10) }
-       const loc3 = { lat: parseFloat(lat3, 10), lng: parseFloat(lon3, 10) }
-       addMarker(loc1, map, "1");
-       addMarker(loc2, map, "2");
-       addMarker(loc3, map, "3");
-   }
-   
-   function addMarker(location, map, label) {
-       new google.maps.Marker({
-         position: location,
-         label: label,
-         map: map
-     });
-   }
-   initMap()
-}   
+                    localStorage.setItem('lat', position.coords.latitude)
+                    localStorage.setItem('lon', position.coords.longitude)
+                    pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    map2.setCenter(pos)
+                    addMarker(pos, map2, "H")
+                    return pos
+                },
+            );
+        }
+        return pos;
+    }
 
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            scrollwheel: true,
+            zoomControl: true,
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            draggable: true,
+            disableDefaultUI: true,
+            center: pos
+        });
+        var pos = getLatLng(map);
+        const loc1 = { lat: parseFloat(lat1, 10), lng: parseFloat(lon1, 10) }
+        const loc2 = { lat: parseFloat(lat2, 10), lng: parseFloat(lon2, 10) }
+        const loc3 = { lat: parseFloat(lat3, 10), lng: parseFloat(lon3, 10) }
+        addMarker(loc1, map, "1");
+        addMarker(loc2, map, "2");
+        addMarker(loc3, map, "3");
+    }
 
-=======
+    function addMarker(location, map, label) {
+        new google.maps.Marker({
+            position: location,
+            label: label,
+            map: map
+        });
+    }
+    initMap()
 }
 
-// function initMap() {
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 13,
-//         scrollwheel: false,
-//         zoomControl: false,
-//         navigationControl: false,
-//         mapTypeControl: false,
-//         scaleControl: false,
-//         draggable: false,
-//         disableDefaultUI: true,
-//         center: pos
-//     });
-//     var pos = getLatLng(map);
-//     /*const test = {lat: 33.758060799999996, lng: -117.9600352}
-//     // for(i = 1; i < 4; i++){
-//     console.log(localStorage.getItem('address1'))
-//     var address = localStorage.getItem('address1').replace(/ /g, "+")
-//     console.log(address)
-//     var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyAIaqZXCHledPTJ1pfyC0gqkfiHpbQIvAE" 
-//         // console.log(url)
-//     const res = await fetch(url)
-//     const data = res.json()
-//         // console.log(typeof(data))
-//         // console.log(JSON.stringify(data))
-//         // console.log("json okokok")
-//     console.log(data)
-//         // console.log(data['results']['0']['geometry']['location']['lat'])
-//         // console.log(data['results']['0']['geometry']['location']['lng'])
-//      */
-//     const test = { lat: 33.758060799999996, lng: -117.9600352 }
-//     addMarker(test, map)
-//     console.log(typeof (lat1))
-//     console.log(lat1)
-//     lat1int = parseFloat(lat1, 10);
-//     console.log(lat1int)
-//     const loc1 = { lat: parseInt(lat1, 10), lng: parseInt(lon1, 10) }
-//     const loc2 = { lat: parseInt(lat2, 10), lng: parseInt(lon2, 10) }
-//     const loc3 = { lat: parseInt(lat3, 10), lng: parseInt(lon3, 10) }
-//     addMarker(loc1, map);
-//     addMarker(loc2, map);
-//     addMarker(loc3, map);
-//     //}
-// }
-
-// function addMarker(location, map) {
-//     new google.maps.Marker({
-//         position: location,
-//         //label: labels[labelIndex++ % labels.length],
-//         label: "A",
-//         map: map
-//     });
-// }
->>>>>>> bd1d3cd2c289951ca07b3737aec6706764ba28be
 document.onload = fetchYelp()
-document.onload = initMap()
+
 
 
 
